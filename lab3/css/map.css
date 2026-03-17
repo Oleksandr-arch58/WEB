@@ -1,0 +1,112 @@
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: linear-gradient(135deg, #0b1020, #111933);
+  color: white;
+}
+
+.container {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.topbar {
+  background: rgba(10, 15, 30, 0.9);
+  border-bottom: 1px solid rgba(255,255,255,0.1);
+}
+
+.nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+}
+
+.brand {
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.menu {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.pill {
+  text-decoration: none;
+  color: white;
+  padding: 10px 14px;
+  border: 1px solid rgba(255,255,255,0.15);
+  border-radius: 20px;
+  background: rgba(255,255,255,0.05);
+}
+
+.pill.active {
+  background: linear-gradient(135deg, #7c5cff, #2dd4bf);
+  color: #071021;
+  font-weight: bold;
+}
+
+.card {
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 18px;
+  padding: 20px;
+  margin-top: 20px;
+  box-shadow: 0 12px 30px rgba(0,0,0,0.35);
+}
+
+.muted {
+  color: #c8d1ef;
+}
+
+.tabs {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin: 20px 0;
+}
+
+.tabBtn {
+  cursor: pointer;
+  padding: 10px 14px;
+  border-radius: 20px;
+  border: 1px solid rgba(255,255,255,0.15);
+  background: rgba(255,255,255,0.05);
+  color: white;
+  font-weight: bold;
+}
+
+.tabBtn.active {
+  background: linear-gradient(135deg, #7c5cff, #2dd4bf);
+  color: #071021;
+}
+
+.mapWrap {
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 18px;
+  overflow: hidden;
+  background: rgba(255,255,255,0.03);
+}
+
+#mapImage {
+  display: block;
+  width: 100%;
+  height: auto;
+  opacity: 1;
+  transform: scale(1);
+  transition: opacity 0.28s ease, transform 0.28s ease;
+}
+
+#mapImage.is-fading {
+  opacity: 0;
+  transform: scale(0.995);
+}
+
+.caption {
+  padding: 12px;
+  border-top: 1px solid rgba(255,255,255,0.1);
+  color: #c8d1ef;
+}
