@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MLBB Info — Гайды на героев</title>
+
+</head>
+<body>
+  <header class="topbar">
+    <div class="container nav">
+      <div class="brand">MLBB Info</div>
+      <nav class="menu">
+        <a class="pill" href="index.html">Главная</a>
+        <a class="pill active" href="hero-guides.html">Гайды на героев</a>
+        <a class="pill" href="rotations.html">Ротации</a>
+        <a class="pill" href="map.html">Карты</a>
+        <a class="pill" href="settings.html">Настройки</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <section class="card">
+      <h1>Гайды на героев</h1>
+      <p>
+        На данной странице представлены краткие рекомендации по некоторым героям MLBB.
+        Здесь можно увидеть их роль, назначение и основные советы по использованию.
+      </p>
+
+      <!-- Поле поиска -->
+      <div class="search-container">
+        <input type="text" id="hero-search" placeholder="Поиск героя по имени...">
+      </div>
+
+      <!-- Кнопки ролей -->
+      <div class="roles">
+        <button class="role-btn" data-role="assassin">Убийца</button>
+        <button class="role-btn" data-role="tank">Танк</button>
+        <button class="role-btn" data-role="support">Поддержка</button>
+        <button class="role-btn" data-role="marksman">Стрелок</button>
+        <button class="role-btn" data-role="fighter">Боец</button>
+        <button class="role-btn" data-role="mage">Маг</button>
+      </div>
+
+      <!-- Контейнер для каруселей -->
+      <div id="heroes-container">
+        <!-- Карусели будут добавлены динамически -->
+      </div>
+
+      <!-- Панель информации о герое -->
+      <div id="hero-info-panel" class="hero-info">
+        <button id="hero-info-close" class="hero-info-close" aria-label="Закрыть">×</button>
+        <h3 id="hero-name"></h3>
+        <p id="hero-description"></p>
+      </div>
+
+      <p class="note">
+        Для более подробного ознакомления с ротациями перейдите на страницу
+        <a href="rotations.html">«Ротации»</a>.
+      </p>
+    </section>
+  </main>
+
+</body>
+</html>

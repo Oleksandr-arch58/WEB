@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MLBB Info — Карты</title>
+
+</head>
+<body>
+  <header class="topbar">
+    <div class="container nav">
+      <div class="brand">MLBB Info</div>
+      <nav class="menu">
+        <a class="pill" href="index.html">Главная</a>
+        <a class="pill" href="hero-guides.html">Гайды на героев</a>
+        <a class="pill" href="rotations.html">Ротации</a>
+        <a class="pill active" href="map.html">Карты</a>
+        <a class="pill" href="settings.html">Настройки</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <section class="card">
+      <h1>Карты MLBB</h1>
+      <p class="muted">
+        Ниже представлены три карты. При нажатии на кнопки будет отображаться разное изображение.
+        На картах размещены кликабельные зоны.
+      </p>
+
+      <div class="tabs">
+        <button class="tabBtn active" type="button" data-title="Игра на линии" data-src="images/line.jpg" data-map="mapLine">
+          Игра на линии
+        </button>
+
+        <button class="tabBtn" type="button" data-title="Монстры" data-src="images/monsters.jpg" data-map="mapMonsters">
+          Монстры
+        </button>
+
+        <button class="tabBtn" type="button" data-title="Поле боя мифической чести" data-src="images/mythic.jpg" data-map="mapMythic">
+          Поле боя мифической чести
+        </button>
+      </div>
+
+      <div class="mapWrap">
+        <img id="mapImage" src="images/line.jpg" alt="Карта: Игра на линии" usemap="#mapLine">
+        <div class="caption" id="mapCaption">Сейчас выбрано: Игра на линии</div>
+      </div>
+
+      <map name="mapLine" id="mapLine">
+        <!-- Верхняя/средняя/нижняя линии -->
+        <area shape="rect" data-coords=" " href="rotations.html" alt="Верхняя линия" title="Верхняя линия">
+        <area shape="rect" data-coords="1099,502,1500,586" href="rotations.html" alt="Центральная линия" title="Центральная линия">
+        <area shape="rect" data-coords="1482,876,1792,951" href="rotations.html" alt="Нижняя линия" title="Нижняя линия">
+
+        <!-- Лес (общая зона) -->
+        <area shape="circle" data-coords=" " href="rotations.html" alt="Лес" title="Лес">
+        <area shape="circle" data-coords=" " href="rotations.html" alt="Turtle" title="Turtle">
+        <area shape="circle" data-coords=" " href="rotations.html" alt="Lord" title="Lord">
+      </map>
+
+      <map name="mapMonsters" id="mapMonsters">
+        <area shape="circle" data-coords=" " href="rotations.html" alt="Баф 1" title="Баф 1">
+        <area shape="circle" data-coords=" " href="rotations.html" alt="Баф 2" title="Баф 2">
+        <area shape="circle" data-coords=" " href="rotations.html" alt="Лагерь" title="Лагерь">
+        <area shape="circle" data-coords=" " href="rotations.html" alt="Лагерь" title="Лагерь">
+        <area shape="circle" data-coords=" " href="rotations.html" alt="Turtle" title="Turtle">
+        <area shape="circle" data-coords=" " href="rotations.html" alt="Lord" title="Lord">
+      </map>
+
+      <map name="mapMythic" id="mapMythic">
+        <area shape="rect" data-coords=" " href="rotations.html" alt="Контроль реки" title="Контроль реки">
+        <area shape="rect" data-coords=" " href="rotations.html" alt="Контроль низа" title="Контроль низа">
+        <area shape="circle" data-coords=" " href="rotations.html" alt="Turtle" title="Turtle">
+        <area shape="circle" data-coords=" " href="rotations.html" alt="Lord" title="Lord">
+      </map>
+    </section>
+  </main>
+
+
+</body>
+</html>
