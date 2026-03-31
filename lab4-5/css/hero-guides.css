@@ -1,0 +1,202 @@
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: #0b1020;
+  color: white;
+}
+
+.container {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.topbar {
+  background: rgba(10, 15, 30, 0.9);
+  border-bottom: 1px solid rgba(255,255,255,0.1);
+}
+
+.nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+}
+
+.brand {
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.menu {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.pill {
+  text-decoration: none;
+  color: white;
+  padding: 10px 14px;
+  border: 1px solid rgba(255,255,255,0.15);
+  border-radius: 20px;
+  background: rgba(255,255,255,0.05);
+}
+
+.pill.active {
+  background: linear-gradient(135deg, #7c5cff, #2dd4bf);
+  color: #071021;
+  font-weight: bold;
+}
+
+.card {
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 18px;
+  padding: 20px;
+  margin-top: 20px;
+}
+
+.search-container {
+  margin-top: 20px;
+}
+
+#hero-search {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid rgba(255,255,255,0.15);
+  border-radius: 8px;
+  background: rgba(255,255,255,0.05);
+  color: white;
+  font-size: 16px;
+}
+
+.roles {
+  display: flex;
+  gap: 10px;
+  margin-top: 20px;
+  flex-wrap: wrap;
+}
+
+.role-btn {
+  padding: 10px 20px;
+  border: 1px solid rgba(255,255,255,0.15);
+  border-radius: 20px;
+  background: rgba(255,255,255,0.05);
+  color: white;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.role-btn:hover, .role-btn.active {
+  background: linear-gradient(135deg, #7c5cff, #2dd4bf);
+  color: #071021;
+}
+
+.carousel {
+  margin-top: 20px;
+  overflow-x: auto;
+  overflow-y: hidden;
+  position: relative;
+  scroll-behavior: smooth;
+}
+
+.carousel::-webkit-scrollbar {
+  display: none;
+}
+
+.carousel {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.carousel-track {
+  display: flex;
+  gap: 20px;
+  white-space: nowrap;
+}
+
+.hero-item {
+  flex-shrink: 0;
+  width: 150px;
+  text-align: center;
+  position: relative;
+}
+
+.hero-item img {
+  width: 100%;
+  height: 150px;
+  object-fit: cover;
+  border-radius: 12px;
+  border: 2px solid rgba(255,255,255,0.1);
+}
+
+.hero-item h4 {
+  margin: 10px 0 0 0;
+  color: white;
+}
+
+.hero-info {
+  position: fixed;
+  top: 50%;
+  right: -300px;
+  width: 300px;
+  background: rgba(10, 15, 30, 0.9);
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 12px;
+  padding: 20px;
+  transition: right 0.3s;
+  z-index: 1000;
+}
+
+.hero-info.show {
+  right: 20px;
+}
+
+.hero-info-close {
+  position: absolute;
+  top: 10px;
+  right: 12px;
+  width: 26px;
+  height: 26px;
+  border: none;
+  background: rgba(255,255,255,0.1);
+  border-radius: 50%;
+  color: white;
+  font-size: 18px;
+  cursor: pointer;
+  line-height: 1;
+}
+
+.hero-info-close:hover {
+  background: rgba(255,255,255,0.2);
+}
+
+.search-results {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+  margin-top: 20px;
+}
+
+/* ==================== ЛОГАУТ КНОПКА ==================== */
+.logout-btn {
+  background: rgba(239, 68, 68, 0.2) !important;
+  border-color: rgba(239, 68, 68, 0.4) !important;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  padding: 10px 14px;
+  border: 1px solid rgba(239, 68, 68, 0.4) !important;
+  border-radius: 20px;
+  font-size: 14px;
+}
+
+.logout-btn:hover {
+  background: rgba(239, 68, 68, 0.4) !important;
+  border-color: rgba(239, 68, 68, 0.6) !important;
+  transform: translateY(-2px);
+}
+
+.logout-btn:active {
+  transform: translateY(0);
+}

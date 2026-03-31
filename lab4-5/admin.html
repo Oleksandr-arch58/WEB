@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MLBB Info Admin — База данных пользователей</title>
+  <link rel="stylesheet" href="css/index.css">
+  <style>
+    .admin-container {
+      margin-top: 20px;
+    }
+    
+    .admin-header {
+      background: rgba(124, 92, 255, 0.1);
+      border: 1px solid rgba(124, 92, 255, 0.3);
+      padding: 20px;
+      border-radius: 12px;
+      margin-bottom: 20px;
+    }
+    
+    .admin-header h1 {
+      margin: 0 0 10px 0;
+      color: #2dd4bf;
+    }
+    
+    .users-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 20px;
+    }
+    
+    .users-table th,
+    .users-table td {
+      padding: 12px;
+      text-align: left;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
+    
+    .users-table th {
+      background: rgba(124, 92, 255, 0.2);
+      font-weight: bold;
+      color: #2dd4bf;
+    }
+    
+    .users-table tr:hover {
+      background: rgba(255, 255, 255, 0.03);
+    }
+    
+    .delete-btn {
+      padding: 6px 12px;
+      background: rgba(239, 68, 68, 0.2);
+      border: 1px solid rgba(239, 68, 68, 0.4);
+      border-radius: 6px;
+      color: #fca5a5;
+      cursor: pointer;
+      transition: 0.2s;
+      font-size: 12px;
+    }
+    
+    .delete-btn:hover {
+      background: rgba(239, 68, 68, 0.4);
+    }
+    
+    .action-buttons {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 20px;
+      flex-wrap: wrap;
+    }
+    
+    .btn {
+      padding: 10px 16px;
+      background: rgba(45, 212, 191, 0.2);
+      border: 1px solid rgba(45, 212, 191, 0.4);
+      border-radius: 8px;
+      color: #2dd4bf;
+      cursor: pointer;
+      font-weight: 600;
+      transition: 0.2s;
+    }
+    
+    .btn:hover {
+      background: rgba(45, 212, 191, 0.4);
+    }
+    
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      gap: 15px;
+      margin-bottom: 20px;
+    }
+    
+    .stat-card {
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      padding: 15px;
+      border-radius: 8px;
+      text-align: center;
+    }
+    
+    .stat-card .number {
+      font-size: 32px;
+      font-weight: bold;
+      color: #2dd4bf;
+    }
+    
+    .stat-card .label {
+      color: #a0aec0;
+      font-size: 12px;
+      margin-top: 5px;
+    }
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <div class="container nav">
+      <div class="brand">MLBB Info — Администратор</div>
+      <nav class="menu">
+        <a class="pill" href="index.html">Главная</a>
+        <a class="pill active" href="admin.html">Администратор</a>
+        <button class="pill logout-btn" id="logoutBtn">Выход</button>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container admin-container">
+    <div class="admin-header">
+      <h1>Панель администратора</h1>
+      <p>Просмотр и управление пользователями из базы данных</p>
+      <p style="color: #a0aec0; font-size: 12px;">Backend работает на: <strong id="backendStatus">Проверка...</strong></p>
+    </div>
+
+    <div class="stats">
+      <div class="stat-card">
+        <div class="number" id="totalUsers">0</div>
+        <div class="label">Всего пользователей</div>
+      </div>
+    </div>
+
+    <div class="action-buttons">
+      <button class="btn" id="refreshBtn">🔄 Обновить</button>
+      <button class="btn" id="exportBtn">💾 Экспортировать JSON</button>
+      <button class="btn" id="clearBtn">🗑️ Очистить БД</button>
+    </div>
+
+    <table class="users-table">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Логин</th>
+          <th>Дата регистрации</th>
+          <th>Хеш пароля</th>
+          <th>Действие</th>
+        </tr>
+      </thead>
+      <tbody id="usersTableBody">
+        <tr>
+          <td colspan="5" style="text-align: center; color: #a0aec0;">Загрузка...</td>
+        </tr>
+      </tbody>
+    </table>
+  </main>
+
+  <script src="js/auth.js"></script>
+  <script src="js/guard.js"></script>
+  <script>
+    const API_URL = 'http://localhost:3000/api/admin';
+
+    // Логинование администратора
+    async function loadUsers() {
+      try {
+        const response = await fetch(`${API_URL}/users`);
+        const data = await response.json();
+
+        if (!response.ok) {
+          showError('Ошибка загрузки пользователей');
+          return;
+        }
+
+        document.getElementById('totalUsers').textContent = data.total;
+        renderTable(data.users);
+        document.getElementById('backendStatus').textContent = '✅ Подключен';
+        document.getElementById('backendStatus').style.color = '#86efac';
+      } catch (error) {
+        console.error('Ошибка:', error);
+        document.getElementById('backendStatus').textContent = '❌ Отключен';
+        document.getElementById('backendStatus').style.color = '#fca5a5';
+        showError('Backend не доступен! Убедитесь, что он запущен на http://localhost:3000');
+      }
+    }
+
+    function renderTable(users) {
+      const tbody = document.getElementById('usersTableBody');
+      
+      if (users.length === 0) {
+        tbody.innerHTML = '<tr><td colspan="5" style="text-align: center; color: #a0aec0;">Нет пользователей</td></tr>';
+        return;
+      }
+
+      tbody.innerHTML = users.map(user => `
+        <tr>
+          <td>${user.id}</td>
+          <td><strong>${escapeHtml(user.login)}</strong></td>
+          <td>${new Date(user.createdAt).toLocaleString('ru-RU')}</td>
+          <td><code style="color: #2dd4bf; font-size: 11px;">${user.passwordHashFirst8}</code></td>
+          <td>
+            <button class="delete-btn" onclick="deleteUser(${user.id}, '${user.login}')">Удалить</button>
+          </td>
+        </tr>
+      `).join('');
+    }
+
+    function escapeHtml(text) {
+      const div = document.createElement('div');
+      div.textContent = text;
+      return div.innerHTML;
+    }
+
+    async function deleteUser(id, login) {
+      if (!confirm(`Вы уверены? Это удалит пользователя "${login}"`)) return;
+
+      try {
+        const response = await fetch(`${API_URL}/users/${id}`, {
+          method: 'DELETE'
+        });
+
+        const data = await response.json();
+
+        if (response.ok) {
+          showSuccess(`Пользователь "${login}" удалён`);
+          loadUsers();
+        } else {
+          showError(data.message || 'Ошибка удаления');
+        }
+      } catch (error) {
+        showError('Ошибка сервера');
+      }
+    }
+
+    function showSuccess(msg) {
+      alert('✅ ' + msg);
+    }
+
+    function showError(msg) {
+      alert('❌ ' + msg);
+    }
+
+    // Экспортировать БД
+    document.getElementById('exportBtn').addEventListener('click', async () => {
+      try {
+        const response = await fetch(`${API_URL}/export`);
+        const blob = await response.blob();
+        const url = window.URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = `users_export_${Date.now()}.json`;
+        a.click();
+        showSuccess('БД экспортирована!');
+      } catch (error) {
+        showError('Ошибка экспорта');
+      }
+    });
+
+    // Обновить таблицу
+    document.getElementById('refreshBtn').addEventListener('click', loadUsers);
+
+    // Очистить БД
+    document.getElementById('clearBtn').addEventListener('click', () => {
+      if (!confirm('⚠️ Это действие удалит ВСЕ пользователей из БД! Вы уверены?')) return;
+      
+      // Данная функция требует подтверждения на backend
+      if (confirm('Введите "ПОДТВЕРЖДАЮ" чтобы очистить БД')) {
+        // На реальном сайте добавить endpoint
+        alert('Функция требует дополнительной защиты. Удалите файл db/users.json вручную.');
+      }
+    });
+
+    // Logout
+    document.getElementById('logoutBtn').addEventListener('click', () => {
+      logoutUser();
+      window.location.href = 'login.html';
+    });
+
+    // Загрузить пользователей при открытии
+    loadUsers();
+
+    // Автообновление каждые 5 секунд
+    setInterval(loadUsers, 5000);
+  </script>
+</body>
+</html>

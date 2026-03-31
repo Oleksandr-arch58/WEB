@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MLBB Info — Главная</title>
+  <link rel="stylesheet" href="css/index.css">
+</head>
+<body>
+  <header class="topbar">
+    <div class="container nav">
+      <div class="brand">MLBB Info</div>
+      <nav class="menu">
+        <a class="pill active" href="index.html">Главная</a>
+        <a class="pill" href="hero-guides.html">Гайды на героев</a>
+        <a class="pill" href="rotations.html">Ротации</a>
+        <a class="pill" href="map.html">Карты</a>
+        <a class="pill" href="settings.html">Настройки</a>
+        <button class="pill logout-btn" id="logoutBtn">Выход</button>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <section class="hero">
+      <div class="hero-text card">
+        <h1>Добро пожаловать на информационный сайт по игре Mobile Legends: Bang Bang</h1>
+        <p>
+          Приветствуем вас на данном сайте. Здесь собраны основные материалы по игре MLBB:
+          гайды на героев, советы по ротациям, информация по карте и полезные игровые настройки.
+          Выберите интересующий вас раздел и ознакомьтесь с материалом.
+        </p>
+        <div class="buttons">
+          <a class="btn primary" href="hero-guides.html">Перейти к гайдам</a>
+          <a class="btn" href="map.html">Открыть карты</a>
+        </div>
+      </div>
+
+      <div class="hero-image card">
+        <img src="images/hero-main.jpg" alt="MLBB">
+      </div>
+    </section>
+
+    <section class="section">
+      <h2>Разделы сайта</h2>
+      <div class="grid">
+        <a class="card section-card" href="hero-guides.html">
+          <img src="images/guide1.jpg" alt="Гайды на героев">
+          <h3>Гайды на героев</h3>
+          <p>Информация о ролях, сильных сторонах героев и краткие советы по игре.</p>
+        </a>
+
+        <a class="card section-card" href="rotations.html">
+          <img src="images/guide2.jpg" alt="Ротации">
+          <h3>Ротации по карте</h3>
+          <p>Объяснение передвижения по карте и взаимодействия с союзниками.</p>
+        </a>
+
+        <a class="card section-card" href="map.html">
+          <img src="images/guide3.jpg" alt="Карты">
+          <h3>Карты и зоны</h3>
+          <p>Раздел с тремя картами и кликабельными зонами.</p>
+        </a>
+
+        <a class="card section-card" href="settings.html">
+          <img src="images/guide4.jpg" alt="Настройки">
+          <h3>Настройки игры</h3>
+          <p>Полезные параметры и советы для более комфортной игры.</p>
+        </a>
+      </div>
+    </section>
+  </main>
+
+  <script src="js/index.js"></script>
+  <script src="js/auth.js"></script>
+  <script src="js/guard.js"></script>
+  <script>
+    document.getElementById('logoutBtn').addEventListener('click', function() {
+      logoutUser();
+      window.location.href = 'login.html';
+    });
+  </script>
+</body>
+</html>
